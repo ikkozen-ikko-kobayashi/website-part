@@ -50,13 +50,12 @@ defaults:
 # ビルド高速化の基本設定
 future: true
 lsi: false
-safe: true  # GitHub Pages環境に合わせ明示（ユーザー定義プラグイン不可）
+safe: true # GitHub Pages環境に合わせ明示（ユーザー定義プラグイン不可）
 
 # kramdown調整（必要に応じて）
 kramdown:
   input: GFM
   hard_wrap: false
-
 # Baseurlを使ったリンクの書き方例:
 #   [プライバシーポリシー]({{ site.baseurl }}/privacy-policy)
 # もしくは絶対パス /website-part/privacy-policy でも可
