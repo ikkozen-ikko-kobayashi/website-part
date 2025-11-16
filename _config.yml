@@ -1,0 +1,62 @@
+# Jekyll configuration for GitHub Pages
+# ナビゲーションやテーマ由来の"Home"等のリンクを排除するため theme は使わない
+# （GitHub PagesのUIでテーマを選ぶとこの値が書き換わるので再選択に注意）
+
+# サイト基本情報（ヘッダ非表示目的で空）
+title: ""
+description: ""
+
+# 公開URL設定（絶対URL生成用）
+url: "https://ikkozen-ikko-kobayashi.github.io"
+# プロジェクトサイトの場合 baseurl はリポジトリ名（先頭にスラッシュ不要）
+baseurl: "/website-part"
+
+# テーマ無効化（デフォルトテーマを使わない）
+# theme: null を書かず、themeキー自体を置かない方法でも可
+# 明示しておくことで意図を示す
+theme: null
+
+# Markdownエンジン
+markdown: kramdown
+
+# 使用プラグイン（不要なので空。必要になったら追加）
+plugins: []
+
+# 生成対象から除外したいファイル/ディレクトリ
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - package.json
+  - node_modules
+
+# 全ページへデフォルトレイアウト適用
+# privacy-policy.md などに front matter が無くても _layouts/default.html を使う
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+
+# 将来投稿（_posts）を使う場合の雛形（今は未使用）
+#  - scope:
+#      path: ""
+#      type: "posts"
+#    values:
+#      layout: "default"
+
+# ビルド高速化の基本設定
+future: true
+lsi: false
+safe: true  # GitHub Pages環境に合わせ明示（ユーザー定義プラグイン不可）
+
+# kramdown調整（必要に応じて）
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+# Baseurlを使ったリンクの書き方例:
+#   [プライバシーポリシー]({{ site.baseurl }}/privacy-policy)
+# もしくは絶対パス /website-part/privacy-policy でも可
