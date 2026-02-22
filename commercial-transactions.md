@@ -11,9 +11,9 @@ layout: default
 
 <style>
 table {
-	width: 100%;
+	width: min(100%, 880px);
 	border-collapse: collapse;
-	margin: 12px 0 20px;
+	margin: 12px auto 20px;
 	font-size: 0.98rem;
 }
 
@@ -26,9 +26,13 @@ table td {
 }
 
 table th {
-	width: 34%;
+	width: clamp(150px, 30%, 260px);
 	background: #f6f8fa;
 	font-weight: 700;
+}
+
+table td {
+	word-break: break-word;
 }
 
 @media (max-width: 640px) {
