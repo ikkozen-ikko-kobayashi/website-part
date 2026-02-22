@@ -101,7 +101,7 @@
 
 ## 14. 関連ページ
 
-- [特定商取引法に基づく表示](./commercial-transactions)
+- [特定商取引法に基づく表示](./commercial-transactions?v=20260222)
 
 ---
 

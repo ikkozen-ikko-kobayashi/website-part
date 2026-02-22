@@ -9,6 +9,41 @@ layout: default
 
 ## 事業者情報
 
+<style>
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 12px 0 20px;
+	font-size: 0.98rem;
+}
+
+table th,
+table td {
+	border: 1px solid #d0d7de;
+	padding: 10px 12px;
+	vertical-align: top;
+	line-height: 1.6;
+}
+
+table th {
+	width: 34%;
+	background: #f6f8fa;
+	font-weight: 700;
+}
+
+@media (max-width: 640px) {
+	table th,
+	table td {
+		display: block;
+		width: 100%;
+	}
+
+	table th {
+		border-bottom: none;
+	}
+}
+</style>
+
 | 項目                 | 内容                                             |
 | -------------------- | ------------------------------------------------ |
 | 屋号                 | 脱落身心                                         |
