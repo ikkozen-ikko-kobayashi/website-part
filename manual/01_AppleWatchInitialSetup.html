@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apple Watch 初期設定手順書</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            border-bottom: 2px solid #e5e5ea;
+            padding-bottom: 10px;
+        }
+        h2 {
+            border-bottom: 1px solid #e5e5ea;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        ul, ol {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 15px;
+        }
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .image-container img {
+            max-width: 250px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        }
+        .missing-images {
+            background-color: #f2f2f7;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 40px;
+        }
+        .missing-images h2 {
+            color: #ff3b30;
+            border-bottom: none;
+            margin-top: 0;
+            padding-bottom: 0;
+        }
+        .manual-tabbar {
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            margin: 0 0 24px;
+            padding: 0 8px;
+            background: transparent;
+        }
+        .manual-tabbar nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            gap: 12px 18px;
+            width: 100%;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 14px 24px;
+            box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.52);
+            backdrop-filter: blur(14px) saturate(160%);
+            -webkit-backdrop-filter: blur(14px) saturate(160%);
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+        }
+        .manual-tabbar a {
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            font-family: "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Yu Mincho", "YuMincho", "Noto Serif JP", Georgia, serif;
+            text-decoration: none;
+            color: #2a2a2a;
+        }
+        .manual-tabbar a:hover {
+            color: #111;
+            background: rgba(0, 0, 0, 0.05);
+        }
+        .manual-tabbar a[aria-current="page"] {
+            color: #1a1a1a;
+            background: rgba(0, 0, 0, 0.07);
+            box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="manual-tabbar">
+        <nav aria-label="マニュアル内の移動">
+            <a href="01_AppleWatchInitialSetup.html" aria-current="page">初期設定</a>
+            <a href="02_AppleWatchMindfulnessBreathing.html">呼吸設定</a>
+            <a href="03_watchface_mindfulness.html">文字盤から起動</a>
+            <a href="04_install_ZenHRV.html">ひと休みインストール</a>
+        </nav>
+    </header>
+
+    <h1>Apple Watch 初期設定手順書</h1>
+
+    <h2>1. 事前準備</h2>
+    <ul>
+        <li>始める前に、iPhoneを最新バージョンのiOSにアップデートしておきます。（例．iOS 26.3.1）</li>
+        <li>iPhoneがWi-Fiかモバイル通信ネットワークでインターネットに接続されていることを確認します。</li>
+        <li>iPhoneのBluetoothをオンにしておきます。</li>
+        <li>初期設定が終わるまで、iPhoneとApple Watchを近づけたままの状態にしておきます。</li>
+    </ul>
+
+    <h2>2. 電源を入れて言語と地域を選択する</h2>
+    <ol>
+        <li>Apple Watchを腕につけ、デジタルクラウンの近くにあるサイドボタンを長押しして電源を入れます。</li>
+        <li>画面に言語の選択肢が表示されたら、「日本語」を選択します。
+            <div class="image-container">
+                <img src="01/IMG_1749.jpeg" alt="言語選択画面">
+                <img src="01/IMG_1750.jpeg" alt="日本語設定確認">
+            </div>
+        </li>
+        <li>「地域を選択」画面で、「日本」を選択します。
+            <div class="image-container">
+                <img src="01/IMG_1752.jpeg" alt="地域選択画面">
+            </div>
+        </li>
+    </ol>
+
+    <h2>3. iPhoneとペアリングする</h2>
+    <ol>
+        <li>iPhoneをApple Watchに近づけると、「iPhoneを使用してこのApple Watchを設定」というメッセージが表示されるので、「続ける」をタップします。※Apple Watch側で「ペアリングを開始」をタップして進めることも可能です。
+            <div class="image-container">
+                <img src="01/IMG_1755.PNG" alt="iPhone側の設定開始画面">
+            </div>
+        </li>
+        <li>「自分用に設定」をタップします。
+            <div class="image-container">
+                <img src="01/IMG_1756.PNG" alt="自分用に設定">
+            </div>
+        </li>
+        <li>iPhoneの背面カメラを使って、iPhoneの画面上のフレームにApple Watchが収まるように位置を調整します。
+            <div class="image-container">
+                <img src="01/IMG_1754.PNG" alt="カメラでペアリング">
+                <img src="01/IMG_1757.PNG" alt="カメラでペアリング詳細">
+            </div>
+        </li>
+        <li>しばらくすると「Apple Watchのペアリングが完了しました」と表示されます。
+            <div class="image-container">
+                <img src="01/IMG_1758.PNG" alt="ペアリング完了">
+            </div>
+        </li>
+    </ol>
+
+    <h2>4. 新しいApple Watchとして設定（または復元）</h2>
+    <ul>
+        <li>初めての場合は「新しいApple Watchとして設定」をタップします。以前使っていたApple Watchのバックアップがある場合は、「バックアップから復元」をタップしてデータを転送することもできます。</li>
+    </ul>
+
+    <h2>5. 装着する腕とDigital Crownの位置を選択</h2>
+    <ol>
+        <li>Apple Watchをどちらの腕に装着するか（左/右）を選択し、「続ける」をタップします。（右利きの人であれば左腕に装着することをおすすめします）
+            <div class="image-container">
+                <img src="01/IMG_1759.PNG" alt="装着する腕を選択">
+            </div>
+        </li>
+        <li>Digital Crownを配置する側（上/下）を選択し、「続ける」をタップします。（右利きの人であればDigital Crownを上に配置することをおすすめします）
+            <div class="image-container">
+                <img src="01/IMG_1760.PNG" alt="Digital Crownの位置">
+            </div>
+        </li>
+        <li>アクティベート処理が行われます。
+            <div class="image-container">
+                <img src="01/IMG_1762.PNG" alt="アクティベート中">
+            </div>
+        </li>
+    </ol>
+
+    <h2>6. 各種設定とカスタマイズ</h2>
+    <ol>
+        <li><strong>利用規約:</strong> 画面の利用規約に目を通し、「同意する」をタップします。
+            <div class="image-container">
+                <img src="01/IMG_1763.PNG" alt="利用規約">
+            </div>
+        </li>
+        <li><strong>パスコードの作成:</strong> 「パスコードを作成」をタップし、Apple Watchのパスコードを設定します。
+            <div class="image-container">
+                <img src="01/IMG_1764.PNG" alt="パスコード作成">
+            </div>
+        </li>
+        <li><strong>文字の太さとサイズ:</strong> お好みのテキストスタイルを選択して、「続ける」をタップします。
+            <div class="image-container">
+                <img src="01/IMG_1765.PNG" alt="文字の太さとサイズ">
+            </div>
+        </li>
+        <li><strong>共有される設定:</strong> 位置情報サービスなどがiPhoneと共有されることを確認し、「OK」をタップします。
+            <div class="image-container">
+                <img src="01/IMG_1766.PNG" alt="共有される設定">
+            </div>
+        </li>
+        <li><strong>パーソナライズ:</strong> 生年月日、性別、身長などを入力し、フィットネスやヘルスケアのデータを設定します。
+            <div class="image-container">
+                <img src="01/IMG_1767.PNG" alt="パーソナライズ">
+            </div>
+        </li>
+        <li><strong>安全性と通知:</strong> ノイズの通知や、緊急SOS・転倒検出などの安全性機能の説明を確認し、「続ける」をタップします。
+            <div class="image-container">
+                <img src="01/IMG_1768.PNG" alt="ノイズ通知">
+                <img src="01/IMG_1769.PNG" alt="安全性設定">
+            </div>
+        </li>
+    </ol>
+
+    <h2>7. 同期と完了</h2>
+    <ol>
+        <li>アカウントへのサインインが行われます。
+            <div class="image-container">
+                <img src="01/IMG_1770.PNG" alt="サインイン中">
+            </div>
+        </li>
+        <li>「Apple Watchと同期中です」と表示されたら、同期が終わるまでiPhoneを近くに置いて待ちます。
+            <div class="image-container">
+                <img src="01/IMG_1771.PNG" alt="同期中">
+            </div>
+        </li>
+        <li>アカウントへのデバイス追加通知や「ようこそApple Watchへ」の画面が表示されたら、iPhone側で「完了」をタップします。
+            <div class="image-container">
+                <img src="01/IMG_1772.PNG" alt="デバイス追加">
+                <img src="01/IMG_1773.PNG" alt="ようこそ画面">
+            </div>
+        </li>
+        <li>Apple Watch側に「ようこそ」画面（文字盤）が表示されたら、初期設定は完了です。
+            <div class="image-container">
+                <img src="01/IMG_1774.jpg" alt="セットアップ完了">
+            </div>
+        </li>
+    </ol>
+
+</body>
+</html>

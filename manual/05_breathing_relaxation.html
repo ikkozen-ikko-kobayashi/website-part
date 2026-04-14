@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>呼吸リラックス</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    position: relative;
+    background: #f8f7f4;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Zen Kaku Gothic New', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+  }
+
+  #bg-layer {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    display: none;
+    background-image: url("05/29835675_s.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  #bg-layer.is-visible { display: block; }
+
+  #scrim {
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: rgba(248, 247, 244, 0.78);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    body { background: #1a1a18; }
+    #scrim { background: rgba(26, 26, 24, 0.72); }
+    #timer-display { color: #888780; }
+    #bg-circle { border-color: rgba(255,255,255,0.12); }
+    #breath-circle { background: #1a2e44; border-color: rgba(255,255,255,0.1); }
+    #phase-text { color: #e8e6df; }
+    #count-text { color: #5ba3d9; }
+    #instruction { color: #888780; }
+    #progress-wrap { background: #2c2c2a; }
+    #progress-bar { background: #5ba3d9; }
+    button { color: #e8e6df; border-color: rgba(255,255,255,0.25); }
+    button:hover { background: #2c2c2a; }
+    #cycle-info { color: #5f5e5a; }
+    #settings { border-color: rgba(255,255,255,0.15); background: rgba(40, 40, 38, 0.55); }
+    #settings label { color: #e8e6df; }
+    #settings input, #settings select { color: #e8e6df; border-color: rgba(255,255,255,0.2); background: #2c2c2a; }
+    .settings-hint { color: #7a7974; }
+  }
+
+  #app {
+    position: relative;
+    z-index: 2;
+    min-height: 540px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    color: #2c2c2a;
+  }
+
+  #settings {
+    width: 100%;
+    max-width: 320px;
+    margin-bottom: 1.25rem;
+    padding: 1rem 1.1rem;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.12);
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  #settings .row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1rem;
+    margin-bottom: 0.65rem;
+  }
+
+  #settings .row:last-child { margin-bottom: 0; }
+
+  #settings label {
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  #settings .control {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 8px 10px;
+    width: 100%;
+  }
+
+  #settings input[type="range"] {
+    width: 100%;
+    accent-color: #2271b3;
+  }
+
+  #settings .value {
+    min-width: 3.5rem;
+    text-align: right;
+    font-size: 13px;
+    letter-spacing: 0.03em;
+    color: #2c2c2a;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    #settings .value { color: #e8e6df; }
+  }
+
+  #settings .toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  #settings input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: #2271b3;
+  }
+
+  .settings-hint {
+    font-size: 11px;
+    color: #888780;
+    letter-spacing: 0.04em;
+    margin-top: 0.35rem;
+  }
+
+  #timer-display {
+    font-size: 13px;
+    color: #888780;
+    letter-spacing: 0.08em;
+    margin-bottom: 2.5rem;
+  }
+
+  #circle-wrap {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin-bottom: 2rem;
+  }
+
+  #bg-circle {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.12);
+  }
+
+  #breath-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: #dceeff;
+    border: 0.5px solid rgba(0,0,0,0.1);
+    will-change: width, height, top, left;
+  }
+
+  #phase-label {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    pointer-events: none;
+  }
+
+  #phase-text {
+    font-size: 18px;
+    font-weight: 400;
+    color: #2c2c2a;
+    letter-spacing: 0.05em;
+  }
+
+  #count-text {
+    font-size: 32px;
+    font-weight: 300;
+    color: #2271b3;
+    line-height: 1;
+    min-width: 32px;
+    text-align: center;
+  }
+
+  #instruction {
+    font-size: 14px;
+    color: #888780;
+    letter-spacing: 0.1em;
+    margin-bottom: 2rem;
+    min-height: 20px;
+    text-align: center;
+  }
+
+  #progress-wrap {
+    width: 200px;
+    height: 3px;
+    background: #e8e6df;
+    border-radius: 2px;
+    margin-bottom: 2rem;
+    overflow: hidden;
+  }
+
+  #progress-bar {
+    height: 100%;
+    background: #2271b3;
+    border-radius: 2px;
+    width: 0%;
+  }
+
+  #controls {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  button {
+    font-family: inherit;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    padding: 8px 24px;
+    border-radius: 8px;
+    border: 0.5px solid rgba(0,0,0,0.25);
+    background: transparent;
+    color: #2c2c2a;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  button:hover { background: #f0ede6; }
+  button:active { transform: scale(0.98); }
+  button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  #cycle-info {
+    margin-top: 1.5rem;
+    font-size: 12px;
+    color: #b4b2a9;
+    letter-spacing: 0.05em;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<div id="bg-layer" class="is-visible" aria-hidden="true"></div>
+<div id="scrim" aria-hidden="true"></div>
+
+<div id="app">
+  <div id="settings">
+    <div class="row">
+      <div style="width: 100%;">
+        <label for="inhaleSec">吸う（秒）</label>
+        <div class="control">
+          <input type="range" id="inhaleSec" min="1" max="8" value="5" step="1">
+          <div class="value" id="inhaleVal">5秒</div>
+        </div>
+      </div>
+      <div style="width: 100%;">
+        <label for="exhaleSec">吐く（秒）</label>
+        <div class="control">
+          <input type="range" id="exhaleSec" min="1" max="8" value="5" step="1">
+          <div class="value" id="exhaleVal">5秒</div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div style="width: 100%;">
+        <label for="minutesSel">時間（分）</label>
+        <div class="control">
+          <input type="range" id="minutesSel" min="1" max="5" value="5" step="1">
+          <div class="value" id="minutesVal">5分</div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <label class="toggle" for="bgToggle">
+        <input type="checkbox" id="bgToggle" checked>
+        背景画像を表示
+      </label>
+    </div>
+    <p class="settings-hint">スタート中は設定を変更できません。リセットすると変更できます。</p>
+  </div>
+
+  <div id="timer-display">残り 5:00</div>
+
+  <div id="circle-wrap">
+    <div id="bg-circle"></div>
+    <div id="breath-circle" style="width:60px;height:60px;top:70px;left:70px;"></div>
+    <div id="phase-label">
+      <div id="phase-text">準備</div>
+      <div id="count-text">—</div>
+    </div>
+  </div>
+
+  <div id="instruction">ボタンを押してスタート</div>
+
+  <div id="progress-wrap">
+    <div id="progress-bar"></div>
+  </div>
+
+  <div id="controls">
+    <button id="startBtn" type="button">スタート</button>
+    <button id="soundBtn" type="button" style="display:none">🔊 音あり</button>
+    <button id="resetBtn" type="button" style="display:none">リセット</button>
+  </div>
+
+  <div id="cycle-info"></div>
+</div>
+
+<script>
+const MIN_R = 60, MAX_R = 180, CONTAINER = 200;
+const SEC_MIN = 1, SEC_MAX = 8;
+
+let sessionTotal = 300, sessionInhale = 5, sessionExhale = 5, sessionCycle = 10;
+
+let elapsed = 0, startTime = null, rafId = null, running = false;
+let soundOn = true, audioCtx = null, noiseNode = null, gainNode = null, filterNode = null;
+
+const circleEl   = document.getElementById('breath-circle');
+const phaseEl    = document.getElementById('phase-text');
+const countEl    = document.getElementById('count-text');
+const timerEl    = document.getElementById('timer-display');
+const instrEl    = document.getElementById('instruction');
+const progressEl = document.getElementById('progress-bar');
+const startBtn   = document.getElementById('startBtn');
+const resetBtn   = document.getElementById('resetBtn');
+const soundBtn   = document.getElementById('soundBtn');
+const inhaleInput = document.getElementById('inhaleSec');
+const exhaleInput = document.getElementById('exhaleSec');
+const minutesSel  = document.getElementById('minutesSel');
+const inhaleVal   = document.getElementById('inhaleVal');
+const exhaleVal   = document.getElementById('exhaleVal');
+const minutesVal  = document.getElementById('minutesVal');
+const bgToggle    = document.getElementById('bgToggle');
+const bgLayer     = document.getElementById('bg-layer');
+
+function clamp(n, lo, hi) {
+  const x = Number(n);
+  if (Number.isNaN(x)) return lo;
+  return Math.min(hi, Math.max(lo, Math.round(x)));
+}
+
+function readMinutes() {
+  return clamp(parseInt(minutesSel.value, 10), 1, 5);
+}
+
+function syncSessionFromInputs() {
+  sessionInhale = clamp(parseInt(inhaleInput.value, 10), SEC_MIN, SEC_MAX);
+  sessionExhale = clamp(parseInt(exhaleInput.value, 10), SEC_MIN, SEC_MAX);
+  inhaleInput.value = String(sessionInhale);
+  exhaleInput.value = String(sessionExhale);
+  sessionTotal = readMinutes() * 60;
+  sessionCycle = sessionInhale + sessionExhale;
+
+  inhaleVal.textContent = sessionInhale + '秒';
+  exhaleVal.textContent = sessionExhale + '秒';
+  minutesVal.textContent = readMinutes() + '分';
+}
+
+function formatRemain(seconds) {
+  const s = Math.max(0, Math.floor(seconds));
+  return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
+}
+
+function updateCycleInfo() {
+  document.getElementById('cycle-info').textContent =
+    '吸う ' + sessionInhale + '秒 → 吐く ' + sessionExhale + '秒 ／ ' + readMinutes() + '分間';
+}
+
+function setSettingsDisabled(disabled) {
+  inhaleInput.disabled = disabled;
+  exhaleInput.disabled = disabled;
+  minutesSel.disabled = disabled;
+  bgToggle.disabled = disabled;
+}
+
+function easeInOut(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
+
+function setCircle(size) {
+  const offset = (CONTAINER - size) / 2;
+  circleEl.style.width  = size + 'px';
+  circleEl.style.height = size + 'px';
+  circleEl.style.top    = offset + 'px';
+  circleEl.style.left   = offset + 'px';
+}
+
+function getPhaseInfo(t) {
+  const cyclePos = t % sessionCycle;
+  if (cyclePos < sessionInhale) return { phase: 'inhale', pt: cyclePos / sessionInhale };
+  return { phase: 'exhale', pt: (cyclePos - sessionInhale) / sessionExhale };
+}
+
+function frame(now) {
+  if (!running) return;
+  const secElapsed = (now - startTime) / 1000;
+
+  if (secElapsed >= sessionTotal) {
+    setCircle(MIN_R);
+    phaseEl.textContent = '完了';
+    countEl.textContent = '✓';
+    instrEl.textContent = 'お疲れさまでした';
+    timerEl.textContent = '残り 0:00';
+    progressEl.style.width = '100%';
+    running = false;
+    stopSound();
+    setSettingsDisabled(false);
+    startBtn.style.display = 'inline-block';
+    startBtn.textContent   = 'もう一度';
+    resetBtn.style.display = soundBtn.style.display = 'none';
+    return;
+  }
+
+  const rem = sessionTotal - secElapsed;
+  timerEl.textContent = '残り ' + formatRemain(rem);
+  progressEl.style.width = (secElapsed / sessionTotal * 100).toFixed(2) + '%';
+
+  const { phase, pt } = getPhaseInfo(secElapsed);
+  const eased = easeInOut(pt);
+
+  if (phase === 'inhale') {
+    setCircle(MIN_R + (MAX_R - MIN_R) * eased);
+    phaseEl.textContent = '吸う';
+    instrEl.textContent = '鼻からゆっくり吸う';
+    countEl.textContent = Math.max(1, Math.ceil(sessionInhale - pt * sessionInhale));
+    if (soundOn && filterNode) {
+      filterNode.frequency.setTargetAtTime(800 + eased * 600, audioCtx.currentTime, 0.2);
+      gainNode.gain.setTargetAtTime(0.08 + eased * 0.04, audioCtx.currentTime, 0.3);
+    }
+  } else {
+    setCircle(MAX_R + (MIN_R - MAX_R) * eased);
+    phaseEl.textContent = '吐く';
+    instrEl.textContent = '鼻からゆっくり吐く';
+    countEl.textContent = Math.max(1, Math.ceil(sessionExhale - pt * sessionExhale));
+    if (soundOn && filterNode) {
+      filterNode.frequency.setTargetAtTime(1400 - eased * 700, audioCtx.currentTime, 0.2);
+      gainNode.gain.setTargetAtTime(0.12 - eased * 0.06, audioCtx.currentTime, 0.3);
+    }
+  }
+
+  rafId = requestAnimationFrame(frame);
+}
+
+function initAudio() {
+  if (audioCtx) return;
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  const bufSize = audioCtx.sampleRate * 2;
+  const buf = audioCtx.createBuffer(1, bufSize, audioCtx.sampleRate);
+  const data = buf.getChannelData(0);
+  for (let i = 0; i < bufSize; i++) data[i] = Math.random() * 2 - 1;
+
+  noiseNode = audioCtx.createBufferSource();
+  noiseNode.buffer = buf; noiseNode.loop = true;
+
+  filterNode = audioCtx.createBiquadFilter();
+  filterNode.type = 'bandpass'; filterNode.frequency.value = 800; filterNode.Q.value = 0.6;
+
+  const filter2 = audioCtx.createBiquadFilter();
+  filter2.type = 'lowpass'; filter2.frequency.value = 1200;
+
+  gainNode = audioCtx.createGain(); gainNode.gain.value = 0;
+  const masterGain = audioCtx.createGain(); masterGain.gain.value = 0.5;
+
+  noiseNode.connect(filterNode);
+  filterNode.connect(filter2);
+  filter2.connect(gainNode);
+  gainNode.connect(masterGain);
+  masterGain.connect(audioCtx.destination);
+  noiseNode.start();
+}
+
+function startSound() {
+  if (!soundOn) return;
+  initAudio();
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+  gainNode.gain.setTargetAtTime(0.08, audioCtx.currentTime, 0.5);
+}
+
+function stopSound() {
+  if (gainNode) gainNode.gain.setTargetAtTime(0.0, audioCtx.currentTime, 0.5);
+}
+
+function toggleSound() {
+  soundOn = !soundOn;
+  soundBtn.textContent = soundOn ? '🔊 音あり' : '🔇 音なし';
+  if (running) soundOn ? startSound() : stopSound();
+}
+
+function startSession() {
+  if (running) return;
+  syncSessionFromInputs();
+  updateCycleInfo();
+  if (elapsed >= sessionTotal) resetState();
+  running = true;
+  startTime = performance.now() - elapsed * 1000;
+  setSettingsDisabled(true);
+  startBtn.style.display = 'none';
+  resetBtn.style.display = soundBtn.style.display = 'inline-block';
+  startSound();
+  rafId = requestAnimationFrame(frame);
+}
+
+function resetState() {
+  elapsed = 0;
+  syncSessionFromInputs();
+  updateCycleInfo();
+  timerEl.textContent = '残り ' + formatRemain(sessionTotal);
+  progressEl.style.width = '0%';
+  setCircle(MIN_R);
+  phaseEl.textContent = '準備';
+  countEl.textContent = '—';
+  instrEl.textContent = 'ボタンを押してスタート';
+}
+
+function resetSession() {
+  running = false;
+  if (rafId) cancelAnimationFrame(rafId);
+  stopSound();
+  resetState();
+  setSettingsDisabled(false);
+  startBtn.textContent   = 'スタート';
+  startBtn.style.display = 'inline-block';
+  resetBtn.style.display = soundBtn.style.display = 'none';
+}
+
+bgToggle.addEventListener('change', function () {
+  bgLayer.classList.toggle('is-visible', !!bgToggle.checked);
+});
+
+function onSettingsInput() {
+  if (running) return;
+  syncSessionFromInputs();
+  updateCycleInfo();
+  timerEl.textContent = '残り ' + formatRemain(sessionTotal);
+}
+
+minutesSel.addEventListener('input', onSettingsInput);
+inhaleInput.addEventListener('input', onSettingsInput);
+exhaleInput.addEventListener('input', onSettingsInput);
+
+startBtn.addEventListener('click', startSession);
+resetBtn.addEventListener('click', resetSession);
+soundBtn.addEventListener('click', toggleSound);
+
+syncSessionFromInputs();
+updateCycleInfo();
+timerEl.textContent = '残り ' + formatRemain(sessionTotal);
+</script>
+</body>
+</html>
