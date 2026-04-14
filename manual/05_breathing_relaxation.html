@@ -10,7 +10,7 @@
 
   body {
     position: relative;
-    background: #f8f7f4;
+    background: #ffffff;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -36,7 +36,7 @@
     inset: 0;
     z-index: 1;
     pointer-events: none;
-    background: rgba(248, 247, 244, 0.78);
+    background: rgba(255, 255, 255, 0.20);
   }
 
   @media (prefers-color-scheme: dark) {
@@ -74,7 +74,8 @@
   #settings {
     width: 100%;
     max-width: 320px;
-    margin-bottom: 1.25rem;
+    margin-top: 1.75rem;
+    margin-bottom: 0;
     padding: 1rem 1.1rem;
     border-radius: 12px;
     border: 1px solid rgba(0,0,0,0.12);
@@ -268,6 +269,31 @@
 <div id="scrim" aria-hidden="true"></div>
 
 <div id="app">
+  <div id="timer-display">残り 5:00</div>
+
+  <div id="circle-wrap">
+    <div id="bg-circle"></div>
+    <div id="breath-circle" style="width:60px;height:60px;top:70px;left:70px;"></div>
+    <div id="phase-label">
+      <div id="phase-text">準備</div>
+      <div id="count-text">—</div>
+    </div>
+  </div>
+
+  <div id="instruction">ボタンを押してスタート</div>
+
+  <div id="progress-wrap">
+    <div id="progress-bar"></div>
+  </div>
+
+  <div id="controls">
+    <button id="startBtn" type="button">スタート</button>
+    <button id="soundBtn" type="button" style="display:none">🔊 音あり</button>
+    <button id="resetBtn" type="button" style="display:none">リセット</button>
+  </div>
+
+  <div id="cycle-info"></div>
+
   <div id="settings">
     <div class="row">
       <div style="width: 100%;">
@@ -302,31 +328,6 @@
     </div>
     <p class="settings-hint">スタート中は設定を変更できません。リセットすると変更できます。</p>
   </div>
-
-  <div id="timer-display">残り 5:00</div>
-
-  <div id="circle-wrap">
-    <div id="bg-circle"></div>
-    <div id="breath-circle" style="width:60px;height:60px;top:70px;left:70px;"></div>
-    <div id="phase-label">
-      <div id="phase-text">準備</div>
-      <div id="count-text">—</div>
-    </div>
-  </div>
-
-  <div id="instruction">ボタンを押してスタート</div>
-
-  <div id="progress-wrap">
-    <div id="progress-bar"></div>
-  </div>
-
-  <div id="controls">
-    <button id="startBtn" type="button">スタート</button>
-    <button id="soundBtn" type="button" style="display:none">🔊 音あり</button>
-    <button id="resetBtn" type="button" style="display:none">リセット</button>
-  </div>
-
-  <div id="cycle-info"></div>
 </div>
 
 <script>
@@ -360,6 +361,23 @@ function clamp(n, lo, hi) {
   const x = Number(n);
   if (Number.isNaN(x)) return lo;
   return Math.min(hi, Math.max(lo, Math.round(x)));
+}
+
+/** URL クエリで初期値を上書き: ?inhale=5&exhale=5&minutes=3 （短縮: i, e, m） */
+function applyQueryParams() {
+  const p = new URLSearchParams(window.location.search);
+  const inhRaw = p.get('inhale') ?? p.get('i');
+  const exhRaw = p.get('exhale') ?? p.get('e');
+  const minRaw = p.get('minutes') ?? p.get('minute') ?? p.get('m');
+  if (inhRaw != null && inhRaw !== '') {
+    inhaleInput.value = String(clamp(parseInt(inhRaw, 10), SEC_MIN, SEC_MAX));
+  }
+  if (exhRaw != null && exhRaw !== '') {
+    exhaleInput.value = String(clamp(parseInt(exhRaw, 10), SEC_MIN, SEC_MAX));
+  }
+  if (minRaw != null && minRaw !== '') {
+    minutesSel.value = String(clamp(parseInt(minRaw, 10), 1, 5));
+  }
 }
 
 function readMinutes() {
@@ -563,6 +581,7 @@ startBtn.addEventListener('click', startSession);
 resetBtn.addEventListener('click', resetSession);
 soundBtn.addEventListener('click', toggleSound);
 
+applyQueryParams();
 syncSessionFromInputs();
 updateCycleInfo();
 timerEl.textContent = '残り ' + formatRemain(sessionTotal);
