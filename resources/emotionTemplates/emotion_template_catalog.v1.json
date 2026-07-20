@@ -36,6 +36,573 @@
         { "slotId": "refreshed", "icon": "😌", "label": "すっきり", "supportsIntensity": true,  "row": 3, "col": 2 },
         { "slotId": "calm",      "icon": "😊", "label": "おだやか", "supportsIntensity": true,  "row": 3, "col": 3 }
       ]
+    },
+    {
+      "templateCode": "legacy_1x5",
+      "title": "いまの5つ",
+      "gridRows": 1,
+      "gridCols": 5,
+      "questionText": "いまの状態に近いのは？",
+      "axisLeftLabel": "",
+      "axisRightLabel": "",
+      "slots": [
+        {
+          "slotId": "joy",
+          "icon": "😆",
+          "label": "喜び",
+          "supportsIntensity": true,
+          "row": 1,
+          "col": 1
+        },
+        {
+          "slotId": "anger",
+          "icon": "😡",
+          "label": "怒り",
+          "supportsIntensity": true,
+          "row": 1,
+          "col": 2
+        },
+        {
+          "slotId": "sadness",
+          "icon": "😢",
+          "label": "哀しみ",
+          "supportsIntensity": true,
+          "row": 1,
+          "col": 3
+        },
+        {
+          "slotId": "smile",
+          "icon": "😊",
+          "label": "微笑み",
+          "supportsIntensity": true,
+          "row": 1,
+          "col": 4
+        },
+        {
+          "slotId": "none",
+          "icon": "😐",
+          "label": "無",
+          "supportsIntensity": false,
+          "row": 1,
+          "col": 5
+        }
+      ]
+    },
+    {
+      "templateCode": "soft_3x3",
+      "title": "やわらかい3×3",
+      "gridRows": 3,
+      "gridCols": 3,
+      "questionText": "いまの状態に近いのは？",
+      "axisLeftLabel": "",
+      "axisRightLabel": "",
+      "slots": [
+        {
+          "slotId": "irritated",
+          "icon": "😤",
+          "label": "イライラ",
+          "supportsIntensity": true,
+          "row": 1,
+          "col": 1
+        },
+        {
+          "slotId": "muddy",
+          "icon": "😔",
+          "label": "もやもや",
+          "supportsIntensity": true,
+          "row": 1,
+          "col": 2
+        },
+        {
+          "slotId": "gloomy",
+          "icon": "😞",
+          "label": "どんより",
+          "supportsIntensity": true,
+          "row": 1,
+          "col": 3
+        },
+        {
+          "slotId": "restless",
+          "icon": "😰",
+          "label": "そわそわ",
+          "supportsIntensity": true,
+          "row": 2,
+          "col": 1
+        },
+        {
+          "slotId": "ordinary",
+          "icon": "😐",
+          "label": "ふつう",
+          "supportsIntensity": false,
+          "row": 2,
+          "col": 2
+        },
+        {
+          "slotId": "leisurely",
+          "icon": "😪",
+          "label": "ゆったり",
+          "supportsIntensity": true,
+          "row": 2,
+          "col": 3
+        },
+        {
+          "slotId": "excited",
+          "icon": "😆",
+          "label": "わくわく",
+          "supportsIntensity": true,
+          "row": 3,
+          "col": 1
+        },
+        {
+          "slotId": "refreshed",
+          "icon": "😌",
+          "label": "すっきり",
+          "supportsIntensity": true,
+          "row": 3,
+          "col": 2
+        },
+        {
+          "slotId": "calm",
+          "icon": "😊",
+          "label": "おだやか",
+          "supportsIntensity": true,
+          "row": 3,
+          "col": 3
+        }
+      ]
+    },
+    {
+      "templateCode": "circumplex_3x3",
+      "title": "円環3×3(きほん)",
+      "gridRows": 3,
+      "gridCols": 3,
+      "questionText": "いまの状態に近いのは？",
+      "axisLeftLabel": "不快寄り",
+      "axisRightLabel": "快適寄り",
+      "slots": [
+        {
+          "slotId": "irritated",
+          "icon": "😤",
+          "label": "イライラ",
+          "supportsIntensity": true,
+          "row": 1,
+          "col": 1
+        },
+        {
+          "slotId": "focused",
+          "icon": "🤔",
+          "label": "集中",
+          "supportsIntensity": true,
+          "row": 1,
+          "col": 2
+        },
+        {
+          "slotId": "excited",
+          "icon": "😆",
+          "label": "わくわく",
+          "supportsIntensity": true,
+          "row": 1,
+          "col": 3
+        },
+        {
+          "slotId": "muddy",
+          "icon": "🫤",
+          "label": "もやもや",
+          "supportsIntensity": true,
+          "row": 2,
+          "col": 1
+        },
+        {
+          "slotId": "ordinary",
+          "icon": "😐",
+          "label": "ふつう",
+          "supportsIntensity": false,
+          "row": 2,
+          "col": 2
+        },
+        {
+          "slotId": "refreshed",
+          "icon": "😌",
+          "label": "すっきり",
+          "supportsIntensity": true,
+          "row": 2,
+          "col": 3
+        },
+        {
+          "slotId": "gloomy",
+          "icon": "😞",
+          "label": "どんより",
+          "supportsIntensity": true,
+          "row": 3,
+          "col": 1
+        },
+        {
+          "slotId": "sleepy",
+          "icon": "😪",
+          "label": "ねむい",
+          "supportsIntensity": true,
+          "row": 3,
+          "col": 2
+        },
+        {
+          "slotId": "calm",
+          "icon": "😊",
+          "label": "おだやか",
+          "supportsIntensity": true,
+          "row": 3,
+          "col": 3
+        }
+      ]
+    },
+    {
+      "templateCode": "circumplex_4x4",
+      "title": "円環4×4(しごと)",
+      "gridRows": 4,
+      "gridCols": 4,
+      "questionText": "いまの状態に近いのは？",
+      "axisLeftLabel": "不快寄り",
+      "axisRightLabel": "快適寄り",
+      "slots": [
+        {
+          "slotId": "anger",
+          "icon": "😡",
+          "label": "怒り",
+          "supportsIntensity": true,
+          "row": 1,
+          "col": 1
+        },
+        {
+          "slotId": "irritated",
+          "icon": "😤",
+          "label": "イライラ",
+          "supportsIntensity": true,
+          "row": 1,
+          "col": 2
+        },
+        {
+          "slotId": "focused",
+          "icon": "🤔",
+          "label": "集中",
+          "supportsIntensity": true,
+          "row": 1,
+          "col": 3
+        },
+        {
+          "slotId": "excited",
+          "icon": "🤩",
+          "label": "わくわく",
+          "supportsIntensity": true,
+          "row": 1,
+          "col": 4
+        },
+        {
+          "slotId": "anxious",
+          "icon": "😰",
+          "label": "不安",
+          "supportsIntensity": true,
+          "row": 2,
+          "col": 1
+        },
+        {
+          "slotId": "tense",
+          "icon": "😬",
+          "label": "緊張",
+          "supportsIntensity": true,
+          "row": 2,
+          "col": 2
+        },
+        {
+          "slotId": "refreshed",
+          "icon": "😮‍💨",
+          "label": "すっきり",
+          "supportsIntensity": true,
+          "row": 2,
+          "col": 3
+        },
+        {
+          "slotId": "joyful",
+          "icon": "😄",
+          "label": "たのしい",
+          "supportsIntensity": true,
+          "row": 2,
+          "col": 4
+        },
+        {
+          "slotId": "sad",
+          "icon": "😢",
+          "label": "かなしい",
+          "supportsIntensity": true,
+          "row": 3,
+          "col": 1
+        },
+        {
+          "slotId": "muddy",
+          "icon": "🫤",
+          "label": "もやもや",
+          "supportsIntensity": true,
+          "row": 3,
+          "col": 2
+        },
+        {
+          "slotId": "relieved",
+          "icon": "😌",
+          "label": "ほっとする",
+          "supportsIntensity": true,
+          "row": 3,
+          "col": 3
+        },
+        {
+          "slotId": "smile",
+          "icon": "😊",
+          "label": "にこにこ",
+          "supportsIntensity": true,
+          "row": 3,
+          "col": 4
+        },
+        {
+          "slotId": "exhausted",
+          "icon": "😫",
+          "label": "ぐったり",
+          "supportsIntensity": true,
+          "row": 4,
+          "col": 1
+        },
+        {
+          "slotId": "sleepy",
+          "icon": "😪",
+          "label": "ねむい",
+          "supportsIntensity": true,
+          "row": 4,
+          "col": 2
+        },
+        {
+          "slotId": "mellow",
+          "icon": "🫠",
+          "label": "まったり",
+          "supportsIntensity": true,
+          "row": 4,
+          "col": 3
+        },
+        {
+          "slotId": "serene",
+          "icon": "☺️",
+          "label": "やすらぎ",
+          "supportsIntensity": true,
+          "row": 4,
+          "col": 4
+        }
+      ]
+    },
+    {
+      "templateCode": "circumplex_5x5",
+      "title": "円環5×5(くわしく)",
+      "gridRows": 5,
+      "gridCols": 5,
+      "questionText": "いまの状態に近いのは？",
+      "axisLeftLabel": "不快寄り",
+      "axisRightLabel": "快適寄り",
+      "slots": [
+        {
+          "slotId": "anger",
+          "icon": "😡",
+          "label": "怒り",
+          "supportsIntensity": true,
+          "row": 1,
+          "col": 1
+        },
+        {
+          "slotId": "irritated",
+          "icon": "😤",
+          "label": "イライラ",
+          "supportsIntensity": true,
+          "row": 1,
+          "col": 2
+        },
+        {
+          "slotId": "surprised",
+          "icon": "😲",
+          "label": "びっくり",
+          "supportsIntensity": true,
+          "row": 1,
+          "col": 3
+        },
+        {
+          "slotId": "upbeat",
+          "icon": "😃",
+          "label": "うきうき",
+          "supportsIntensity": true,
+          "row": 1,
+          "col": 4
+        },
+        {
+          "slotId": "excited",
+          "icon": "🤩",
+          "label": "わくわく",
+          "supportsIntensity": true,
+          "row": 1,
+          "col": 5
+        },
+        {
+          "slotId": "fear",
+          "icon": "😨",
+          "label": "こわい",
+          "supportsIntensity": true,
+          "row": 2,
+          "col": 1
+        },
+        {
+          "slotId": "anxious",
+          "icon": "😰",
+          "label": "不安",
+          "supportsIntensity": true,
+          "row": 2,
+          "col": 2
+        },
+        {
+          "slotId": "focused",
+          "icon": "🤔",
+          "label": "集中",
+          "supportsIntensity": true,
+          "row": 2,
+          "col": 3
+        },
+        {
+          "slotId": "refreshed",
+          "icon": "😮‍💨",
+          "label": "すっきり",
+          "supportsIntensity": true,
+          "row": 2,
+          "col": 4
+        },
+        {
+          "slotId": "joyful",
+          "icon": "😄",
+          "label": "たのしい",
+          "supportsIntensity": true,
+          "row": 2,
+          "col": 5
+        },
+        {
+          "slotId": "sad",
+          "icon": "😭",
+          "label": "かなしい",
+          "supportsIntensity": true,
+          "row": 3,
+          "col": 1
+        },
+        {
+          "slotId": "muddy",
+          "icon": "🫤",
+          "label": "もやもや",
+          "supportsIntensity": true,
+          "row": 3,
+          "col": 2
+        },
+        {
+          "slotId": "ordinary",
+          "icon": "😐",
+          "label": "ふつう",
+          "supportsIntensity": false,
+          "row": 3,
+          "col": 3
+        },
+        {
+          "slotId": "relieved",
+          "icon": "😌",
+          "label": "ほっとする",
+          "supportsIntensity": true,
+          "row": 3,
+          "col": 4
+        },
+        {
+          "slotId": "happy",
+          "icon": "🥰",
+          "label": "しあわせ",
+          "supportsIntensity": true,
+          "row": 3,
+          "col": 5
+        },
+        {
+          "slotId": "gloomy",
+          "icon": "😞",
+          "label": "おちこみ",
+          "supportsIntensity": true,
+          "row": 4,
+          "col": 1
+        },
+        {
+          "slotId": "blue",
+          "icon": "😔",
+          "label": "しゅん",
+          "supportsIntensity": true,
+          "row": 4,
+          "col": 2
+        },
+        {
+          "slotId": "hazy",
+          "icon": "😶‍🌫️",
+          "label": "ぼんやり",
+          "supportsIntensity": true,
+          "row": 4,
+          "col": 3
+        },
+        {
+          "slotId": "leisurely",
+          "icon": "🙂",
+          "label": "ゆったり",
+          "supportsIntensity": true,
+          "row": 4,
+          "col": 4
+        },
+        {
+          "slotId": "calm",
+          "icon": "😊",
+          "label": "おだやか",
+          "supportsIntensity": true,
+          "row": 4,
+          "col": 5
+        },
+        {
+          "slotId": "burnout",
+          "icon": "😵",
+          "label": "ヘトヘト",
+          "supportsIntensity": true,
+          "row": 5,
+          "col": 1
+        },
+        {
+          "slotId": "drained",
+          "icon": "😫",
+          "label": "ぐったり",
+          "supportsIntensity": true,
+          "row": 5,
+          "col": 2
+        },
+        {
+          "slotId": "sleepy",
+          "icon": "😪",
+          "label": "ねむい",
+          "supportsIntensity": true,
+          "row": 5,
+          "col": 3
+        },
+        {
+          "slotId": "mellow",
+          "icon": "🫠",
+          "label": "まったり",
+          "supportsIntensity": true,
+          "row": 5,
+          "col": 4
+        },
+        {
+          "slotId": "serene",
+          "icon": "☺️",
+          "label": "やすらぎ",
+          "supportsIntensity": true,
+          "row": 5,
+          "col": 5
+        }
+      ]
     }
   ]
 }
