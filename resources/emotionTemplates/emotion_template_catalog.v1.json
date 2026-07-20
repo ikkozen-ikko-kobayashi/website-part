@@ -18,6 +18,89 @@
       ]
     },
     {
+      "templateCode": "nozaki_3x3",
+      "title": "野﨑先生案3×3",
+      "gridRows": 3,
+      "gridCols": 3,
+      "questionText": "いまの状態に近いのは？",
+      "axisLeftLabel": "不快寄り",
+      "axisRightLabel": "快適寄り",
+      "slots": [
+        {
+          "slotId": "tense",
+          "icon": "😬",
+          "label": "緊張",
+          "supportsIntensity": true,
+          "row": 1,
+          "col": 1
+        },
+        {
+          "slotId": "focused",
+          "icon": "🤔",
+          "label": "集中",
+          "supportsIntensity": true,
+          "row": 1,
+          "col": 2
+        },
+        {
+          "slotId": "joyful",
+          "icon": "😄",
+          "label": "楽しい",
+          "supportsIntensity": true,
+          "row": 1,
+          "col": 3
+        },
+        {
+          "slotId": "anxious",
+          "icon": "😰",
+          "label": "不安",
+          "supportsIntensity": true,
+          "row": 2,
+          "col": 1
+        },
+        {
+          "slotId": "ordinary",
+          "icon": "😐",
+          "label": "ふつう",
+          "supportsIntensity": false,
+          "row": 2,
+          "col": 2
+        },
+        {
+          "slotId": "relieved",
+          "icon": "☺️",
+          "label": "安心",
+          "supportsIntensity": true,
+          "row": 2,
+          "col": 3
+        },
+        {
+          "slotId": "tired",
+          "icon": "😫",
+          "label": "疲れた",
+          "supportsIntensity": true,
+          "row": 3,
+          "col": 1
+        },
+        {
+          "slotId": "sleepy",
+          "icon": "😪",
+          "label": "眠気",
+          "supportsIntensity": true,
+          "row": 3,
+          "col": 2
+        },
+        {
+          "slotId": "relaxed",
+          "icon": "😌",
+          "label": "リラックス",
+          "supportsIntensity": true,
+          "row": 3,
+          "col": 3
+        }
+      ]
+    },
+    {
       "templateCode": "soft_3x3",
       "title": "やわらかい3×3",
       "gridRows": 3,
