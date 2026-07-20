@@ -1,0 +1,41 @@
+{
+  "catalogVersion": "2026-07-20",
+  "templates": [
+    {
+      "templateCode": "legacy_1x5",
+      "title": "いまの5つ",
+      "gridRows": 1,
+      "gridCols": 5,
+      "questionText": "いまの状態に近いのは？",
+      "axisLeftLabel": "",
+      "axisRightLabel": "",
+      "slots": [
+        { "slotId": "joy",     "icon": "😆", "label": "喜び",   "supportsIntensity": true,  "row": 1, "col": 1 },
+        { "slotId": "anger",   "icon": "😡", "label": "怒り",   "supportsIntensity": true,  "row": 1, "col": 2 },
+        { "slotId": "sadness", "icon": "😢", "label": "哀しみ", "supportsIntensity": true,  "row": 1, "col": 3 },
+        { "slotId": "smile",   "icon": "😊", "label": "微笑み", "supportsIntensity": true,  "row": 1, "col": 4 },
+        { "slotId": "none",    "icon": "😐", "label": "無",     "supportsIntensity": false, "row": 1, "col": 5 }
+      ]
+    },
+    {
+      "templateCode": "soft_3x3",
+      "title": "やわらかい3×3",
+      "gridRows": 3,
+      "gridCols": 3,
+      "questionText": "いまの状態に近いのは？",
+      "axisLeftLabel": "",
+      "axisRightLabel": "",
+      "slots": [
+        { "slotId": "irritated", "icon": "😤", "label": "イライラ", "supportsIntensity": true,  "row": 1, "col": 1 },
+        { "slotId": "muddy",     "icon": "😔", "label": "もやもや", "supportsIntensity": true,  "row": 1, "col": 2 },
+        { "slotId": "gloomy",    "icon": "😞", "label": "どんより", "supportsIntensity": true,  "row": 1, "col": 3 },
+        { "slotId": "restless",  "icon": "😰", "label": "そわそわ", "supportsIntensity": true,  "row": 2, "col": 1 },
+        { "slotId": "ordinary",  "icon": "😐", "label": "ふつう",   "supportsIntensity": false, "row": 2, "col": 2 },
+        { "slotId": "leisurely", "icon": "😪", "label": "ゆったり", "supportsIntensity": true,  "row": 2, "col": 3 },
+        { "slotId": "excited",   "icon": "😆", "label": "わくわく", "supportsIntensity": true,  "row": 3, "col": 1 },
+        { "slotId": "refreshed", "icon": "😌", "label": "すっきり", "supportsIntensity": true,  "row": 3, "col": 2 },
+        { "slotId": "calm",      "icon": "😊", "label": "おだやか", "supportsIntensity": true,  "row": 3, "col": 3 }
+      ]
+    }
+  ]
+}
