@@ -1,14 +1,56 @@
 {
-  "catalogVersion": "2026-07-20",
-  "defaultCandidates": [
-    "起床後",
-    "仕事",
-    "休憩",
-    "坐禅",
-    "瞑想",
-    "運動後",
-    "通勤",
-    "就寝前",
-    "その他"
+  "catalogVersion": "2026-07-23",
+  "schemaVersion": 2,
+  "sortKeys": {
+    "hrv": "HRV",
+    "heartRate": "心拍数",
+    "timeline": "時系列"
+  },
+  "tags": [
+    {
+      "label": "起床後",
+      "sortKey": "hrv",
+      "sortOrder": "asc"
+    },
+    {
+      "label": "仕事",
+      "sortKey": "hrv",
+      "sortOrder": "asc"
+    },
+    {
+      "label": "休憩",
+      "sortKey": "hrv",
+      "sortOrder": "asc"
+    },
+    {
+      "label": "坐禅",
+      "sortKey": "hrv",
+      "sortOrder": "desc"
+    },
+    {
+      "label": "瞑想",
+      "sortKey": "hrv",
+      "sortOrder": "desc"
+    },
+    {
+      "label": "運動後",
+      "sortKey": "heartRate",
+      "sortOrder": "desc"
+    },
+    {
+      "label": "通勤",
+      "sortKey": "heartRate",
+      "sortOrder": "desc"
+    },
+    {
+      "label": "就寝前",
+      "sortKey": "hrv",
+      "sortOrder": "asc"
+    },
+    {
+      "label": "その他",
+      "sortKey": "timeline",
+      "sortOrder": "desc"
+    }
   ]
 }
